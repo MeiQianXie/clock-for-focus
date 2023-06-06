@@ -1,0 +1,44 @@
+# 导入time模块
+import time
+
+# 设置专注时长（分钟）
+focus_time = 25
+
+# 设置休息时长（分钟）
+break_time = 5
+
+# 设置专注次数
+focus_count = 4
+
+# 定义一个函数，用于显示倒计时
+def countdown(minutes):
+  # 将分钟转换为秒
+  seconds = minutes * 60
+  # 循环减少秒数，直到为零
+  while seconds > 0:
+    # 将秒数格式化为分:秒
+    time_format = f"{seconds // 60}:{seconds % 60:02d}"
+    # 打印倒计时
+    print(time_format, end="\r")
+    # 每秒减一
+    seconds -= 1
+    # 等待一秒
+    time.sleep(1)
+  # 打印结束提示
+  print("Time's up!")
+
+# 开始专注时钟
+print("Start focusing!")
+# 循环进行专注和休息
+for i in range(focus_count):
+  # 显示当前是第几次专注
+  print(f"Focus session {i + 1}")
+  # 调用倒计时函数，传入专注时长
+  countdown(focus_time)
+  # 如果还有下一次专注，就开始休息
+  if i < focus_count - 1:
+    print("Take a break!")
+    # 调用倒计时函数，传入休息时长
+    countdown(break_time)
+# 结束专注时钟
+print("Well done! You have completed the focus clock.")
